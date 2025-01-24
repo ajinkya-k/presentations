@@ -117,7 +117,7 @@ Estimate what we can observe (expectations) using what we can measure (estimates
 
 #### <span style='color:blue'>They are not exclusive</span>
 
-- Either BIRDiE or weighted estimator is fine, choose carefully though
+- When both assumptions apply, either BIRDiE or weighted estimator is fine, choose carefully though
 
 ## Thank you! 
 
