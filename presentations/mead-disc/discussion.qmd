@@ -1,0 +1,99 @@
+---
+title: "BIRDiE: A Discussion"
+author: 
+  - name: "[Ajinkya Kokandakar](https://ajinkya-k.github.io)"
+    email: ajinkya@stat.wisc.edu
+    orcid: 0000-0001-6628-2272
+    affiliations:
+      - name: '<ins>ajinkya-k.github.io</ins>'
+        city: Madison
+        state: WI
+        url: https://ajinkya-k.github.io
+        department: Statistics
+date: "2025-01-24"
+format: 
+  revealjs:
+      slide-number: true
+      smaller: true
+      progress: true
+---
+
+## The Big Picture 
+
+### <span style='color:blue'>Objective:</span>
+
+- Estimate disparity in outcome by race
+- If outcome is denoted as $Y$, race is denoted $R$ want to know:
+$$
+     \mathbb{E}(Y \mid R),\  \operatorname{var}(Y \mid R), \ \text{or if we are greedy} \ \ \mathbb{P}(Y \mid R)
+$$
+
+### <span style='color:crimson'>Problem:</span>
+
+- Race is not measured
+- Predictors of race, also potentially related to the outcome
+
+## BIRDiE does not replace BISG
+
+<ins>BISG is an input to BIRDiE</ins>
+
+- **Stage 1:** Get predictions ($\hat{R}$) from BISG
+- **Stage 2:** Use BISG preictions for estimating disparities ($\mathbb{E}(Y | \hat{R})$)
+
+We can think of it as two different quantities:
+
+- BISG: Race ($R$) $\rightarrow$ predicted race ($\hat{R}$)
+- BIRDiE: $\hat{R} \rightarrow \mathbb{E}(Y \mid \hat{R}) \rightsquigarrow \mathbb{E}(Y \mid R)$ 
+
+### <span style='color:crimson'>Note:</span>
+
+- Race $R$ must be "observed" in the dataset for <ins>estimating</ins> BISG model
+- Race $R$ is **not** needed for obtaning predictions from a "learned" BISG model
+
+## The Analysis Pipeline
+
+
+### 1. Identification (the "difficult" part)
+
+Connect what we want to compute ($\mathbb{P}(Y|R)$) with what we can observe ($\mathbb{P}(Y, X)$)
+
+- Conditional independence assumptions: CI-YS/CI-YR
+- Technical assumptions: accuracy, overlap, etc.
+
+### 2. Estimation (the "easy" part)
+
+Estimate what we can observe (expectations) using what we can measure (estimates)
+    
+- thresholding estimator
+- weighting estimator
+- BIRDiE 
+    - Direct marginal likelihood inference/EM algorithm
+    - Pooled/Saturated/Mixed Models
+
+
+## Identification
+
+- Identification relies on (frequently untestable) assumptions
+
+![Source: [McCartran et al.(2024)](https://www.nber.org/papers/w32373)](img/ident.png)
+
+
+
+
+## Identification 
+
+#### <span style='color:darkred'>aka which assumption <ins>can you justify</ins> (or get away with 🤫)</span>
+
+
+#### Identification Path 1 (CI-YR)
+
+- Assuming outomce ($Y$) and race ($R$) are independent once we know the surname, location, and other observed characteristics, it is okay to use the weighted estimator
+
+#### Identification Path 2 (CI-YS)
+
+- Assuming outcome ($Y$) and surname ($S$) are independent conditional on race, location and other observed characteristics, it is okay to use BIRDiE
+
+#### <span style='color:blue'>They are not exclusive</span>
+
+- Either BIRDiE or weighted are fine, choose carefully though
+
