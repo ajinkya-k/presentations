@@ -53,14 +53,14 @@ We can think of it as two different quantities:
 ## The Analysis Pipeline
 
 
-### 1. Identification (the "difficult" part)
+### 1. Identification (the <span style='color:red'>difficult</span> part)
 
 Connect what we want to compute ($\mathbb{P}(Y|R)$) with what we can observe ($\mathbb{P}(Y, X)$)
 
 - Conditional independence assumptions: CI-YS/CI-YR
 - Technical assumptions: accuracy, overlap, etc.
 
-### 2. Estimation (the "easy" part)
+### 2. Estimation (the <span style='color:blue'>easy</span> part)
 
 Estimate what we can observe (expectations) using what we can measure (estimates)
     
@@ -69,6 +69,28 @@ Estimate what we can observe (expectations) using what we can measure (estimates
 - BIRDiE 
     - Direct marginal likelihood inference/EM algorithm
     - Pooled/Saturated/Mixed Models
+
+
+## The Analysis Pipeline
+
+
+### 1. Identification (the <span style='color:blue'>easy</span> part)
+
+Connect what we want to compute ($\mathbb{P}(Y|R)$) with what we can observe ($\mathbb{P}(Y, X)$)
+
+- Conditional independence assumptions: CI-YS/CI-YR
+- Technical assumptions: accuracy, overlap, etc.
+
+### 2. Estimation (the <span style='color:red'>difficult</span> part)
+
+Estimate what we can observe (expectations) using what we can measure (estimates)
+    
+- thresholding estimator
+- weighting estimator
+- BIRDiE 
+    - Direct marginal likelihood inference/EM algorithm
+    - Pooled/Saturated/Mixed Models
+
 
 
 ## Identification
@@ -96,4 +118,16 @@ Estimate what we can observe (expectations) using what we can measure (estimates
 #### <span style='color:blue'>They are not exclusive</span>
 
 - Either BIRDiE or weighted estimator is fine, choose carefully though
+
+## Thank you! 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+$$
+\Huge{\text{Questions?}}
+$$
 
