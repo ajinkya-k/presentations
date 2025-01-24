@@ -97,7 +97,7 @@ Estimate what we can observe (expectations) using what we can measure (estimates
 
 - Identification relies on (frequently untestable) assumptions
 
-![Source: [McCartran et al.(2024)](https://www.nber.org/papers/w32373)](img/ident.png)
+![Source: [McCartan et al.(2024)](https://www.nber.org/papers/w32373)](img/ident.png)
 
 
 
