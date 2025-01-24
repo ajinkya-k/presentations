@@ -187,13 +187,33 @@ BISG is an input to BIRDiE
 </section>
 <section id="the-analysis-pipeline" class="slide level2">
 <h2>The Analysis Pipeline</h2>
-<h3 id="identification-the-difficult-part">1. Identification (the “difficult” part)</h3>
+<h3 id="identification-the-difficult-part">1. Identification (the <span style="color:red">difficult</span> part)</h3>
 <p>Connect what we want to compute (<span class="math inline">\(\mathbb{P}(Y|R)\)</span>) with what we can observe (<span class="math inline">\(\mathbb{P}(Y, X)\)</span>)</p>
 <ul>
 <li>Conditional independence assumptions: CI-YS/CI-YR</li>
 <li>Technical assumptions: accuracy, overlap, etc.</li>
 </ul>
-<h3 id="estimation-the-easy-part">2. Estimation (the “easy” part)</h3>
+<h3 id="estimation-the-easy-part">2. Estimation (the <span style="color:blue">easy</span> part)</h3>
+<p>Estimate what we can observe (expectations) using what we can measure (estimates)</p>
+<ul>
+<li>thresholding estimator</li>
+<li>weighting estimator</li>
+<li>BIRDiE
+<ul>
+<li>Direct marginal likelihood inference/EM algorithm</li>
+<li>Pooled/Saturated/Mixed Models</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-analysis-pipeline-1" class="slide level2">
+<h2>The Analysis Pipeline</h2>
+<h3 id="identification-the-easy-part">1. Identification (the <span style="color:blue">easy</span> part)</h3>
+<p>Connect what we want to compute (<span class="math inline">\(\mathbb{P}(Y|R)\)</span>) with what we can observe (<span class="math inline">\(\mathbb{P}(Y, X)\)</span>)</p>
+<ul>
+<li>Conditional independence assumptions: CI-YS/CI-YR</li>
+<li>Technical assumptions: accuracy, overlap, etc.</li>
+</ul>
+<h3 id="estimation-the-difficult-part">2. Estimation (the <span style="color:red">difficult</span> part)</h3>
 <p>Estimate what we can observe (expectations) using what we can measure (estimates)</p>
 <ul>
 <li>thresholding estimator</li>
@@ -227,6 +247,13 @@ BISG is an input to BIRDiE
 <ul>
 <li>Either BIRDiE or weighted estimator is fine, choose carefully though</li>
 </ul>
+</section>
+<section id="thank-you" class="slide level2">
+<h2>Thank you!</h2>
+<p><br> <br> <br> <br> <br></p>
+<p><span class="math display">\[
+\Huge{\text{Questions?}}
+\]</span></p>
 
 
 </section>

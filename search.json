@@ -18,7 +18,14 @@
     "href": "presentations/mead-disc/discussion.html#the-analysis-pipeline",
     "title": "BIRDiE: A Discussion",
     "section": "The Analysis Pipeline",
-    "text": "The Analysis Pipeline\n1. Identification (the “difficult” part)\nConnect what we want to compute (\\(\\mathbb{P}(Y|R)\\)) with what we can observe (\\(\\mathbb{P}(Y, X)\\))\n\nConditional independence assumptions: CI-YS/CI-YR\nTechnical assumptions: accuracy, overlap, etc.\n\n2. Estimation (the “easy” part)\nEstimate what we can observe (expectations) using what we can measure (estimates)\n\nthresholding estimator\nweighting estimator\nBIRDiE\n\nDirect marginal likelihood inference/EM algorithm\nPooled/Saturated/Mixed Models"
+    "text": "The Analysis Pipeline\n1. Identification (the difficult part)\nConnect what we want to compute (\\(\\mathbb{P}(Y|R)\\)) with what we can observe (\\(\\mathbb{P}(Y, X)\\))\n\nConditional independence assumptions: CI-YS/CI-YR\nTechnical assumptions: accuracy, overlap, etc.\n\n2. Estimation (the easy part)\nEstimate what we can observe (expectations) using what we can measure (estimates)\n\nthresholding estimator\nweighting estimator\nBIRDiE\n\nDirect marginal likelihood inference/EM algorithm\nPooled/Saturated/Mixed Models"
+  },
+  {
+    "objectID": "presentations/mead-disc/discussion.html#the-analysis-pipeline-1",
+    "href": "presentations/mead-disc/discussion.html#the-analysis-pipeline-1",
+    "title": "BIRDiE: A Discussion",
+    "section": "The Analysis Pipeline",
+    "text": "The Analysis Pipeline\n1. Identification (the easy part)\nConnect what we want to compute (\\(\\mathbb{P}(Y|R)\\)) with what we can observe (\\(\\mathbb{P}(Y, X)\\))\n\nConditional independence assumptions: CI-YS/CI-YR\nTechnical assumptions: accuracy, overlap, etc.\n\n2. Estimation (the difficult part)\nEstimate what we can observe (expectations) using what we can measure (estimates)\n\nthresholding estimator\nweighting estimator\nBIRDiE\n\nDirect marginal likelihood inference/EM algorithm\nPooled/Saturated/Mixed Models"
   },
   {
     "objectID": "presentations/mead-disc/discussion.html#identification",
@@ -33,6 +40,13 @@
     "title": "BIRDiE: A Discussion",
     "section": "Identification",
     "text": "Identification\naka which assumption can you justify (or get away with 🤫)\nIdentification Path 1 (CI-YR)\n\nAssuming outomce (\\(Y\\)) and race (\\(R\\)) are independent once we know the surname, location, and other observed characteristics, it is okay to use the weighted estimator\n\nIdentification Path 2 (CI-YS)\n\nAssuming outcome (\\(Y\\)) and surname (\\(S\\)) are independent conditional on race, location and other observed characteristics, it is okay to use BIRDiE\n\nThey are not exclusive\n\nEither BIRDiE or weighted estimator is fine, choose carefully though"
+  },
+  {
+    "objectID": "presentations/mead-disc/discussion.html#thank-you",
+    "href": "presentations/mead-disc/discussion.html#thank-you",
+    "title": "BIRDiE: A Discussion",
+    "section": "Thank you!",
+    "text": "Thank you!\n    \n\\[\n\\Huge{\\text{Questions?}}\n\\]"
   },
   {
     "objectID": "index.html",
