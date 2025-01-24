@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "presentations/mead-disc/discussion.html#the-big-picture",
+    "href": "presentations/mead-disc/discussion.html#the-big-picture",
+    "title": "BIRDiE: A Discussion",
+    "section": "The Big Picture",
+    "text": "The Big Picture\nObjective:\n\nEstimate disparity in outcome by race\nIf outcome is denoted as \\(Y\\), race is denoted \\(R\\) want to know: \\[\n   \\mathbb{E}(Y \\mid R),\\  \\operatorname{var}(Y \\mid R), \\ \\text{or if we are greedy} \\ \\ \\mathbb{P}(Y \\mid R)\n\\]\n\nProblem:\n\nRace is not measured\nPredictors of race, also potentially related to the outcome"
+  },
+  {
+    "objectID": "presentations/mead-disc/discussion.html#birdie-does-not-replace-bisg",
+    "href": "presentations/mead-disc/discussion.html#birdie-does-not-replace-bisg",
+    "title": "BIRDiE: A Discussion",
+    "section": "BIRDiE does not replace BISG",
+    "text": "BIRDiE does not replace BISG\n\nBISG is an input to BIRDiE\n\n\nStage 1: Get predictions (\\(\\hat{R}\\)) from BISG\nStage 2: Use BISG preictions for estimating disparities (\\(\\mathbb{E}(Y | \\hat{R})\\))\n\nWe can think of it as two different quantities:\n\nBISG: Race (\\(R\\)) \\(\\rightarrow\\) predicted race (\\(\\hat{R}\\))\nBIRDiE: \\(\\hat{R} \\rightarrow \\mathbb{E}(Y \\mid \\hat{R}) \\rightsquigarrow \\mathbb{E}(Y \\mid R)\\)\n\nNote:\n\nRace \\(R\\) must be “observed” in the dataset for estimating BISG model\nRace \\(R\\) is not needed for obtaning predictions from a “learned” BISG model"
+  },
+  {
+    "objectID": "presentations/mead-disc/discussion.html#the-analysis-pipeline",
+    "href": "presentations/mead-disc/discussion.html#the-analysis-pipeline",
+    "title": "BIRDiE: A Discussion",
+    "section": "The Analysis Pipeline",
+    "text": "The Analysis Pipeline\n1. Identification (the “difficult” part)\nConnect what we want to compute (\\(\\mathbb{P}(Y|R)\\)) with what we can observe (\\(\\mathbb{P}(Y, X)\\))\n\nConditional independence assumptions: CI-YS/CI-YR\nTechnical assumptions: accuracy, overlap, etc.\n\n2. Estimation (the “easy” part)\nEstimate what we can observe (expectations) using what we can measure (estimates)\n\nthresholding estimator\nweighting estimator\nBIRDiE\n\nDirect marginal likelihood inference/EM algorithm\nPooled/Saturated/Mixed Models"
+  },
+  {
+    "objectID": "presentations/mead-disc/discussion.html#identification",
+    "href": "presentations/mead-disc/discussion.html#identification",
+    "title": "BIRDiE: A Discussion",
+    "section": "Identification",
+    "text": "Identification\n\nIdentification relies on (frequently untestable) assumptions\n\n\nSource: McCartran et al.(2024)"
+  },
+  {
+    "objectID": "presentations/mead-disc/discussion.html#identification-1",
+    "href": "presentations/mead-disc/discussion.html#identification-1",
+    "title": "BIRDiE: A Discussion",
+    "section": "Identification",
+    "text": "Identification\naka which assumption can you justify (or get away with 🤫)\nIdentification Path 1 (CI-YR)\n\nAssuming outomce (\\(Y\\)) and race (\\(R\\)) are independent once we know the surname, location, and other observed characteristics, it is okay to use the weighted estimator\n\nIdentification Path 2 (CI-YS)\n\nAssuming outcome (\\(Y\\)) and surname (\\(S\\)) are independent conditional on race, location and other observed characteristics, it is okay to use BIRDiE\n\nThey are not exclusive\n\nEither BIRDiE or weighted are fine, choose carefully though"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Presentations",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJan 24, 2025\n\n\nBIRDiE: A Discussion\n\n\nAjinkya Kokandakar\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  }
+]
