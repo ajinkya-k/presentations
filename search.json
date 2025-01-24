@@ -39,7 +39,7 @@
     "href": "presentations/mead-disc/discussion.html#identification-1",
     "title": "BIRDiE: A Discussion",
     "section": "Identification",
-    "text": "Identification\naka which assumption can you justify (or get away with 🤫)\nIdentification Path 1 (CI-YR)\n\nAssuming outomce (\\(Y\\)) and race (\\(R\\)) are independent once we know the surname, location, and other observed characteristics, it is okay to use the weighted estimator\n\nIdentification Path 2 (CI-YS)\n\nAssuming outcome (\\(Y\\)) and surname (\\(S\\)) are independent conditional on race, location and other observed characteristics, it is okay to use BIRDiE\n\nThey are not exclusive\n\nEither BIRDiE or weighted estimator is fine, choose carefully though"
+    "text": "Identification\naka which assumption can you justify (or get away with 🤫)\nIdentification Path 1 (CI-YR)\n\nAssuming outomce (\\(Y\\)) and race (\\(R\\)) are independent once we know the surname, location, and other observed characteristics, it is okay to use the weighted estimator\n\nIdentification Path 2 (CI-YS)\n\nAssuming outcome (\\(Y\\)) and surname (\\(S\\)) are independent conditional on race, location and other observed characteristics, it is okay to use BIRDiE\n\nThey are not exclusive\n\nWhen both assumptions apply, either BIRDiE or weighted estimator is fine, choose carefully though"
   },
   {
     "objectID": "presentations/mead-disc/discussion.html#thank-you",
