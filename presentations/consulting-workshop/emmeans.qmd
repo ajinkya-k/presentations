@@ -1,0 +1,181 @@
+---
+title: "Estimated Marginal Means with `R`"
+author:
+  - name: "[Ajinkya Kokandakar](https://ajinkya-k.github.io)"
+    email: ajinkya@stat.wisc.edu
+    orcid: 0000-0001-6628-2272
+    affiliations:
+      - name: '<ins>ajinkya-k.github.io</ins>'
+        city: Madison
+        state: WI
+        url: https://ajinkya-k.github.io
+        department: Statistics
+date: "2025-01-24"
+format:
+  revealjs:
+    slide-number: true
+    smaller: true
+    progress: true
+    css: "../styles.scss"
+    code-line-numbers: false
+    highlight-style: atom-one
+theme:
+  - ../styles.scss
+---
+
+## Overview
+
+- What `emmeans` does and doesn't do?
+- Visualizing interaction
+- Analyzing interactions
+- Marginal means vs pairwise comparisons
+- Multiplicity corrections
+
+
+
+## Marginal Means
+
+If you have a model of the form:
+
+```r
+response ~ treatment * variety
+```
+the following are "marginal means":
+
+- average response value in treatment `T`(or `N`)
+- average response value for variety `A`(or `B` or `C`)
+
+`emmeans` just computes these means, and any contrasts between them
+
+## Example
+
+```{r sim-design}
+#| echo: true
+nt <- 2           # number of treatments
+nv <- 3           # number of varieties
+mc <- 4           # number of observations per cell
+
+n <- nt * nv * mc # total number of observations
+
+dt <- data.frame(
+  treatment = factor(rep(c("T", "N"), each = nv * mc), levels = c("N", "T")),
+  variety   = factor(rep(LETTERS[1:nv], nt * mc),      levels = LETTERS[1:nv])
+)
+```
+
+```{r sim-response-mean}
+m_glob <- 10
+dt$mean <- with(
+  dt,
+  m_glob + ifelse(treatment == "N", -2, 2) + (as.numeric(variety) - 2) * 1.5
+)
+```
+
+Generate the mean (hidden) and then draw the responses
+```{r sim-response}
+#| echo: true
+dt$response <- rnorm(n, mean = dt$mean)
+```
+
+
+**Looking at cross-tabs**
+
+```{r}
+addmargins(xtabs(~variety + treatment, dt))
+```
+
+
+## Visualize
+
+```{r}
+#| echo: true
+#| code-fold: true
+library(ggplot2)
+library(khroma)
+library(gridExtra)
+library(colorout)
+library(lme4)
+theme_set(theme_minimal())
+theme_update(legend.position = "bottom")
+options(ggplot2.discrete.colour = c("#4477AA", "#EE6677", "#228833", "#CCBB44", "#66CCEE", "#AA3377", "#BBBBBB"))
+options(ggplot2.discrete.fill = color("bright")(7))
+```
+
+```{r}
+#| echo: true
+#| code-fold: true
+par(mfrow = c(1,2))
+boxplot(response ~ treatment, dt, col = khroma::color("nightfall")(2))
+boxplot(response ~ variety,   dt, col = khroma::color("sunset")(3))
+```
+
+
+## Model
+
+```{r lm}
+#| echo: true
+lmod <- lm(response ~ treatment * variety, dt)
+anova(lmod)
+```
+
+## Model: with random effects
+
+```{r lmer}
+#| echo: true
+lmm_sim <- lmer(response ~ treatment +  (1 | variety), dt)
+summary(lmm_sim)
+```
+
+## Interaction Plot
+
+```{r}
+#| echo: true
+library(emmeans)
+p1 <- emmip(lmod, variety ~ treatment)
+p2 <- emmip(lmod, treatment ~ variety)
+grid.arrange(p1, p2, nrow = 1)
+```
+
+
+
+
+## Revealing the model
+
+```{r sim-response-mean}
+#| echo: true
+#| code-fold: true
+```
+
+
+## Adding interactions
+
+```{r sim-interact}
+dt$meanint <- with(
+  dt,
+  m_glob + ifelse(treatment == "N", -2, 2) + (as.numeric(variety) - 2) * 1.5 - (as.numeric(treatment) - 1) * (as.numeric(variety) - 2) * 6
+)
+
+dt$respint <- rnorm(n, dt$meanint)
+```
+
+
+## Model again
+```{r lm-int}
+#| echo: true
+lmint <- lm(respint ~ treatment * variety, dt)
+summary(lmint)
+```
+
+
+## Interaction Effect
+```{r}
+p3 <- emmip(lmint, variety ~ treatment)
+p4 <- emmip(lmint, treatment ~ variety)
+grid.arrange(p3, p4, nrow = 1)
+```
+
+
+## `emmeans` does not model the data
+
+- `emmeans` computes them _given_ a model
+- <span style='color:crimson'> you need a model before using it!</span>
