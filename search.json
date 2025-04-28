@@ -53,7 +53,7 @@
     "href": "index.html",
     "title": "Presentations",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJan 24, 2025\n\n\nBIRDiE: A Discussion\n\n\nAjinkya Kokandakar\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\nJan 24, 2025\n\n\nBIRDiE: A Discussion\n\n\nAjinkya Kokandakar\n\n\n\n\n\n\nJan 24, 2025\n\n\nEstimated Marginal Means with R\n\n\nAjinkya Kokandakar\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -61,5 +61,89 @@
     "title": "About",
     "section": "",
     "text": "About this blog"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#overview",
+    "href": "presentations/consulting-workshop/emmeans.html#overview",
+    "title": "Estimated Marginal Means with R",
+    "section": "Overview",
+    "text": "Overview\n\nWhat emmeans does and doesn’t do?\nVisualizing interaction\nAnalyzing interactions\nMarginal means vs pairwise comparisons\nMultiplicity corrections"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#marginal-means",
+    "href": "presentations/consulting-workshop/emmeans.html#marginal-means",
+    "title": "Estimated Marginal Means with R",
+    "section": "Marginal Means",
+    "text": "Marginal Means\nIf you have a model of the form:\nresponse ~ treatment * variety\nthe following are “marginal means”:\n\naverage response value in treatment T(or N)\naverage response value for variety A(or B or C)\n\nemmeans just computes these means, and any contrasts between them"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#example",
+    "href": "presentations/consulting-workshop/emmeans.html#example",
+    "title": "Estimated Marginal Means with R",
+    "section": "Example",
+    "text": "Example\n\nnt &lt;- 2           # number of treatments\nnv &lt;- 3           # number of varieties\nmc &lt;- 4           # number of observations per cell\n\nn &lt;- nt * nv * mc # total number of observations\n\ndt &lt;- data.frame(\n  treatment = factor(rep(c(\"T\", \"N\"), each = nv * mc), levels = c(\"N\", \"T\")),\n  variety   = factor(rep(LETTERS[1:nv], nt * mc),      levels = LETTERS[1:nv])\n)\n\nGenerate the mean (hidden) and then draw the responses\n\ndt$response &lt;- rnorm(n, mean = dt$mean)\n\nLooking at cross-tabs\n\n\n       treatment\nvariety  N  T Sum\n    A    4  4   8\n    B    4  4   8\n    C    4  4   8\n    Sum 12 12  24"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#visualize",
+    "href": "presentations/consulting-workshop/emmeans.html#visualize",
+    "title": "Estimated Marginal Means with R",
+    "section": "Visualize",
+    "text": "Visualize\n\n\nCode\nlibrary(ggplot2)\nlibrary(khroma)\nlibrary(gridExtra)\nlibrary(colorout)\nlibrary(lme4)\ntheme_set(theme_minimal())\ntheme_update(legend.position = \"bottom\")\noptions(ggplot2.discrete.colour = c(\"#4477AA\", \"#EE6677\", \"#228833\", \"#CCBB44\", \"#66CCEE\", \"#AA3377\", \"#BBBBBB\"))\noptions(ggplot2.discrete.fill = color(\"bright\")(7))\n\n\n\n\nCode\npar(mfrow = c(1,2))\nboxplot(response ~ treatment, dt, col = khroma::color(\"nightfall\")(2))\nboxplot(response ~ variety,   dt, col = khroma::color(\"sunset\")(3))"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#model",
+    "href": "presentations/consulting-workshop/emmeans.html#model",
+    "title": "Estimated Marginal Means with R",
+    "section": "Model",
+    "text": "Model\n\nlmod &lt;- lm(response ~ treatment * variety, dt)\nanova(lmod)\n\nAnalysis of Variance Table\n\nResponse: response\n                  Df Sum Sq Mean Sq F value    Pr(&gt;F)    \ntreatment          1 90.160  90.160 120.219 2.127e-09 ***\nvariety            2 28.822  14.411  19.215 3.418e-05 ***\ntreatment:variety  2  0.360   0.180   0.240    0.7891    \nResiduals         18 13.499   0.750                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#model-with-random-effects",
+    "href": "presentations/consulting-workshop/emmeans.html#model-with-random-effects",
+    "title": "Estimated Marginal Means with R",
+    "section": "Model: with random effects",
+    "text": "Model: with random effects\n\nlmm_sim &lt;- lmer(response ~ treatment +  (1 | variety), dt)\nsummary(lmm_sim)\n\nLinear mixed model fit by REML ['lmerMod']\nFormula: response ~ treatment + (1 | variety)\n   Data: dt\n\nREML criterion at convergence: 65.4\n\nScaled residuals: \n     Min       1Q   Median       3Q      Max \n-1.94902 -0.56378  0.00866  0.49068  1.88314 \n\nRandom effects:\n Groups   Name        Variance Std.Dev.\n variety  (Intercept) 1.715    1.3095  \n Residual             0.693    0.8324  \nNumber of obs: 24, groups:  variety, 3\n\nFixed effects:\n            Estimate Std. Error t value\n(Intercept)   7.6950     0.7933    9.70\ntreatmentT    3.8764     0.3398   11.41\n\nCorrelation of Fixed Effects:\n           (Intr)\ntreatmentT -0.214"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#interaction-plot",
+    "href": "presentations/consulting-workshop/emmeans.html#interaction-plot",
+    "title": "Estimated Marginal Means with R",
+    "section": "Interaction Plot",
+    "text": "Interaction Plot\n\nlibrary(emmeans)\np1 &lt;- emmip(lmod, variety ~ treatment)\np2 &lt;- emmip(lmod, treatment ~ variety)\ngrid.arrange(p1, p2, nrow = 1)"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#revealing-the-model",
+    "href": "presentations/consulting-workshop/emmeans.html#revealing-the-model",
+    "title": "Estimated Marginal Means with R",
+    "section": "Revealing the model",
+    "text": "Revealing the model\n\n\nCode\nm_glob &lt;- 10\ndt$mean &lt;- with(\n  dt,\n  m_glob + ifelse(treatment == \"N\", -2, 2) + (as.numeric(variety) - 2) * 1.5\n)"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#adding-interactions",
+    "href": "presentations/consulting-workshop/emmeans.html#adding-interactions",
+    "title": "Estimated Marginal Means with R",
+    "section": "Adding interactions",
+    "text": "Adding interactions"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#model-again",
+    "href": "presentations/consulting-workshop/emmeans.html#model-again",
+    "title": "Estimated Marginal Means with R",
+    "section": "Model again",
+    "text": "Model again\n\nlmint &lt;- lm(respint ~ treatment * variety, dt)\nsummary(lmint)\n\n\nCall:\nlm(formula = respint ~ treatment * variety, data = dt)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.6911 -0.7912 -0.1502  0.8256  2.0373 \n\nCoefficients:\n                    Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)           6.4510     0.6313  10.218 6.40e-09 ***\ntreatmentT           10.2039     0.8928  11.429 1.10e-09 ***\nvarietyB              1.8192     0.8928   2.038 0.056561 .  \nvarietyC              3.5529     0.8928   3.979 0.000879 ***\ntreatmentT:varietyB  -6.9402     1.2626  -5.497 3.21e-05 ***\ntreatmentT:varietyC -13.3385     1.2626 -10.564 3.81e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.263 on 18 degrees of freedom\nMultiple R-squared:  0.9094,    Adjusted R-squared:  0.8842 \nF-statistic: 36.14 on 5 and 18 DF,  p-value: 8.919e-09"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#interaction-effect",
+    "href": "presentations/consulting-workshop/emmeans.html#interaction-effect",
+    "title": "Estimated Marginal Means with R",
+    "section": "Interaction Effect",
+    "text": "Interaction Effect"
+  },
+  {
+    "objectID": "presentations/consulting-workshop/emmeans.html#emmeans-does-not-model-the-data",
+    "href": "presentations/consulting-workshop/emmeans.html#emmeans-does-not-model-the-data",
+    "title": "Estimated Marginal Means with R",
+    "section": "emmeans does not model the data",
+    "text": "emmeans does not model the data\n\nemmeans computes them given a model\n you need a model before using it!"
   }
 ]
