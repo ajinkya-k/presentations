@@ -5,13 +5,18 @@ website:
   title: "Presentations"
   navbar:
     right:
-      - about.qmd
+      - href: ../
+        text: Home
       - icon: github
         href: https://github.com/
+  drafts:
+    - presentations/qlhc/qlhc-interview2.qmd
+  draft-mode: gone
 format:
   html:
     theme: cosmo
     css: styles.css
+
 
 
 
